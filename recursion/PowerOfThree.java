@@ -2,7 +2,7 @@ package recursion;
 
 public class PowerOfThree {
     public static void main(String[] args) {
-        int[] n = {27, 0, -1, 81};
+        int[] n = {5, 27, 0, -1, 81};
         for (int x : n){
             System.out.println("Is " + x + " power of 3? " + isPowerOfThree(x));
         }
