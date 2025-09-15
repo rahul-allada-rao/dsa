@@ -1,4 +1,4 @@
-package dsa.recursion;
+package recursion;
 
 public class PowerOfTwo {
 

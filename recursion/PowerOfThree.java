@@ -1,4 +1,4 @@
-package dsa.recursion;
+package recursion;
 
 public class PowerOfThree {
     public static void main(String[] args) {
