@@ -1,0 +1,38 @@
+// Apply the Java plugin for basic Java project functionalities
+plugins {
+    id 'java'
+    // Apply the 'application' plugin if you want to create a runnable JAR
+    id 'application'
+}
+
+// Configure the main class for the 'application' plugin
+application {
+    // Replace "com.example.MainClass" with the fully qualified name of your main class
+//    mainClass = 'com.example.MainClass'
+}
+
+// Where Gradle should look for dependencies
+repositories {
+    // Maven Central is the most common repository
+    mavenCentral()
+}
+
+// Define project dependencies
+dependencies {
+    // Example: Add JUnit Jupiter for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+    // Add any other libraries your project uses
+    // Example: implementation 'com.google.guava:guava:33.0.0-jre'
+}
+
+// Configure JUnit to use the platform
+test {
+    useJUnitPlatform()
+}
+
+// Optional: Set project version and group
+group = 'arr.dsa'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17' // Set your desired Java version

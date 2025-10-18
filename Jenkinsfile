@@ -13,6 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the project on the branch: ${env.BRANCH_NAME}"
+                ./gradlew clean build
                 // Add your build commands here (e.g., mvn clean install, npm build)
             }
         }
