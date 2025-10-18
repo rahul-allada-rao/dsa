@@ -1,7 +1,7 @@
 // Jenkinsfile
 pipeline {
     agent any 
-    echo 'This is for Jenkins build pipeline to print.....'
+    //echo 'This is for Jenkins build pipeline to print.....'
     stages {
         stage('Checkout') {
             steps {
