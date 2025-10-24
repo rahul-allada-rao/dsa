@@ -1,6 +1,6 @@
 package queue;
 
-public class QueueDS {
+public class QueueCircularDS {
     int size =0 ;
     int capacity = 0;
     int front = 0;
@@ -8,7 +8,7 @@ public class QueueDS {
 
     int[] queueArray;
 
-    public QueueDS(int capacity) {
+    public QueueCircularDS(int capacity) {
         this.capacity = capacity;
         queueArray = new int[capacity];
         size = 0;

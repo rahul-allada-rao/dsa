@@ -1,15 +1,34 @@
 package queue;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class QueueMain {
     public static void main(String[] args) throws Exception {
-        createQueue();
-        reverseQueue();
+//        createQueue();
+//        reverseQueue();
+//        implementQueueUsingTwoStacks();
+
+        int[] arr = {2,3,2};
+        int k=2;
+        System.out.println(timeRequiredToBuy(arr, k));
+
+    }
+
+    private static void implementQueueUsingTwoStacks() throws Exception {
+        QueueWithTwoStacks queueWithTwoStacks = new QueueWithTwoStacks();
+        for (int i=0; i<5; i++){
+            queueWithTwoStacks.enqueue(i);
+        }
+
+        for (int i=0; i<5; i++){
+            System.out.print(queueWithTwoStacks.dequeue());
+        }
     }
 
     private static void reverseQueue() throws Exception {
-        QueueDS queueDS = new QueueDS(5);
+        QueueCircularDS queueDS = new QueueCircularDS(5);
         System.out.println("Enqueue.....");
         for (int i=0; i<5; i++) {
             queueDS.enqueue(i);
@@ -32,7 +51,7 @@ public class QueueMain {
     }
 
     private static void createQueue() throws Exception {
-        QueueDS queueDS = new QueueDS(5);
+        QueueCircularDS queueDS = new QueueCircularDS(5);
         System.out.println("Enqueue.....");
         for (int i=0; i<5; i++) {
             queueDS.enqueue(i);
@@ -44,4 +63,36 @@ public class QueueMain {
             System.out.print(queueDS.deque() + " ");
         }
     }
+
+    // [2,3,'2']
+    public static int timeRequiredToBuy(int[] tickets, int k) throws Exception {
+        QueueCircularDS queueCircularDS = new QueueCircularDS(tickets.length);
+        for (int ticket : tickets) {
+            queueCircularDS.enqueue(ticket);
+        }
+
+        int totalTicketNeed = tickets[k];
+        int kPosition = k;
+        int timeTaken = 0;
+        int i=0;
+        while (totalTicketNeed != 0){
+            int data = queueCircularDS.deque();
+            timeTaken++;
+            data--;
+            kPosition--;
+            if (kPosition == i){
+                totalTicketNeed--;
+            }
+            i++;
+            if (kPosition < 0){
+                kPosition = tickets.length - 1;
+            }
+            if (data > 0){
+                queueCircularDS.enqueue(data);
+            }
+        }
+        return timeTaken;
+    }
+
+
 }
