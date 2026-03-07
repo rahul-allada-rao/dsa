@@ -1,4 +1,4 @@
-package twoPointers;
+package stringManipulations;
 
 public class StringPalindrome {
 

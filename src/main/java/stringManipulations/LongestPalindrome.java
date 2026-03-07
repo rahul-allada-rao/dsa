@@ -1,4 +1,4 @@
-package twoPointers;
+package stringManipulations;
 
 public class LongestPalindrome {
     static int start = 0;

@@ -1,4 +1,4 @@
-package twoPointers;
+package stringManipulations;
 
 import java.util.HashMap;
 
