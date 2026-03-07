@@ -1,6 +1,7 @@
 package twoPointers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class RemoveDuplicates {
@@ -31,19 +32,35 @@ public class RemoveDuplicates {
 //            System.out.println("Is " + n + " a happy number? " + isHappy(n));
 //        }
 
-        System.out.println(extractDigits(11298));
+//        System.out.println(extractDigits(11298));
+        int[] nums = {0, 1, 0, 3, 12};
+        moveZeroes(nums);
+    }
+
+    public static void moveZeroes(int[] nums) {
+        System.out.println("Before moving zeroes " + Arrays.toString(nums));
+        int k = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                int temp = nums[i];
+                nums[i] = nums[k];
+                nums[k] = temp;
+                k++;
+            }
+        }
+        System.out.println("After moving zeroes " + Arrays.toString(nums));
     }
 
     public static boolean isHappy(int n) {
-        if ((0 <= n) && (n <=3) && n != 1){
+        if ((0 <= n) && (n <= 3) && n != 1) {
             return false;
         }
-        if (n == 1){
+        if (n == 1) {
             return true;
         }
         int slow = n;
         int fast = getSumOfSquares(n);
-        while (slow != fast && fast != 1){
+        while (slow != fast && fast != 1) {
             slow = getSumOfSquares(slow);
             fast = getSumOfSquares(getSumOfSquares(fast));
         }
@@ -51,20 +68,20 @@ public class RemoveDuplicates {
         return fast == 1;
     }
 
-    private static int getSumOfSquares(int num){
+    private static int getSumOfSquares(int num) {
         int sum = 0;
-        while(num > 0){
+        while (num > 0) {
             int digit = num % 10; // modulo to get the last digit
-            sum = sum + (digit*digit);
+            sum = sum + (digit * digit);
             num = num / 10; // divide to get the quotient as the next number
         }
         return sum;
     }
 
-    private static ArrayList<Integer> extractDigits(int num){
+    private static ArrayList<Integer> extractDigits(int num) {
         ArrayList<Integer> digitList = new ArrayList<>();
 
-        while (num > 0){
+        while (num > 0) {
             int digit = num % 10;
             digitList.add(digit);
             num = num / 10;
@@ -108,7 +125,7 @@ public class RemoveDuplicates {
         int lengthOfSearchStr = needle.length();
         if (lengthOfSearchStr == 0) return foundIndex;
 
-        if (haystack.length() == 1 && lengthOfSearchStr == 1 && haystack.charAt(0) == needle.charAt(0)){
+        if (haystack.length() == 1 && lengthOfSearchStr == 1 && haystack.charAt(0) == needle.charAt(0)) {
             return 0;
         }
 
@@ -122,5 +139,34 @@ public class RemoveDuplicates {
         return foundIndex;
     }
 
+    class ListNode {
+        int val;
+        ListNode next;
 
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
+    public boolean hasCycle(ListNode head) {
+
+        // null node or a single node cannot be in a cycle, so return false
+        if (head == null || head.next == null){
+            return false;
+        }
+
+        // initialize slow and fast pointers
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while (fast != null && fast.next != null){
+            if (slow == fast){
+                return true;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return false;
+    }
 }
